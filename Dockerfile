@@ -10,6 +10,6 @@ RUN rm -rf /etc/nginx/sites-available/* && rm -rf /etc/nginx/sites-enabled/*
 COPY html /usr/share/nginx/html
 COPY conf /etc/nginx/conf.d
 
-CMD service php5-fpm start && service nginx start
+CMD service php5-fpm start && nginx -g "daemon off;"
 EXPOSE 80
 
