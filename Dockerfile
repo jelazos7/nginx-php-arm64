@@ -7,8 +7,11 @@ RUN apt-get -y install nginx php5-fpm
 RUN echo "\ncgi.fix_pathinfo=0\n" >> /etc/php5/fpm/php.ini
 RUN rm -rf /etc/nginx/sites-available/* && rm -rf /etc/nginx/sites-enabled/*
 
-COPY html /usr/share/nginx/html
-COPY conf /etc/nginx/conf.d
+VOLUME /usr/share/nginx/html
+COPY nginx/html /usr/share/nginx/html
+COPY nginx/conf /etc/nginx/conf.d
+COPY php/init.d/* /etc/init.d
+COPY php/pool.d/* /etc/php5/fpm/pool.d
 
 CMD service php5-fpm start && nginx -g "daemon off;"
 EXPOSE 80

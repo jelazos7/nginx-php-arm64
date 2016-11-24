@@ -10,5 +10,5 @@ fi
 
 echo "Starting nginx-php-arm64 container using port $PORT"
 
-docker run -d -p 8180:80 -v $PUBLICHTML:/usr/share/nginx/html jpnh/nginx-php-arm64
+docker run --privileged -d -p $PORT:80 -v $PUBLICHTML:/usr/share/nginx/html jpnh/nginx-php-arm64
 
